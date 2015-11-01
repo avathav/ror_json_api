@@ -1,0 +1,19 @@
+:
+  first_name: Fred
+  last_name: Flintstone
+  email: fred@flintstone.com
+  title: CEO
+  password_digest: <%= ActiveRecord::FixtureSet.default_password_digest %>
+  company: flintstone
+  confirmed_at: <%= Chronic.parse("1/1/2014") %>
+  invitation_token: <%= SecureRandom.urlsafe_base64 %>
+
+wilma:
+  first_name: Wilma
+  last_name: Flintstone
+  email: wilma@flintstone.com
+  title: COO
+  password_digest: <%= ActiveRecord::FixtureSet.default_password_digest %>
+  company: flintstone
+  supervisor: fred
+  invitation_token: <%= SecureRandom.urlsafe_base64 %>
