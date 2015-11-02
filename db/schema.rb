@@ -11,7 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101223043) do
+ActiveRecord::Schema.define(version: 20151101234653) do
+
+  create_table "api_v1_blog_entries", force: :cascade do |t|
+    t.integer  "blog_id",    limit: 4
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.boolean  "is_visible"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "api_v1_blog_entries", ["blog_id"], name: "index_api_v1_blog_entries_on_blog_id", using: :btree
+
+  create_table "blog_entries", force: :cascade do |t|
+    t.integer  "blog_id",    limit: 4
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.boolean  "is_visible"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "blog_entries", ["blog_id"], name: "index_blog_entries_on_blog_id", using: :btree
+
+  create_table "blogs", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.text     "decrtiption", limit: 65535
+    t.boolean  "is_visible"
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "blogs", ["user_id"], name: "index_blogs_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -32,4 +65,6 @@ ActiveRecord::Schema.define(version: 20151101223043) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "blog_entries", "blogs"
+  add_foreign_key "blogs", "users"
 end

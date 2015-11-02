@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @api_v1_blog.title %>
+</p>
+
+<p>
+  <strong>Decrtiption:</strong>
+  <%= @api_v1_blog.decrtiption %>
+</p>
+
+<p>
+  <strong>Is visible:</strong>
+  <%= @api_v1_blog.is_visible %>
+</p>
+
+<%= link_to 'Edit', edit_api_v1_blog_path(@api_v1_blog) %> |
+<%= link_to 'Back', api_v1_blogs_path %>

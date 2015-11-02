@@ -25,4 +25,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   enum role: [ :admin, :user]
+
+  has_many :blogs, :class_name => 'Api::V1::Blog', :dependent => :delete_all
+
+  def to_s
+    email
+  end
 end

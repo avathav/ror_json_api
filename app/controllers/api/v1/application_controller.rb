@@ -5,7 +5,7 @@ module Api
       # For APIs, you may want to use :null_session instead.
       protect_from_forgery with: :exception
 
-      before_filter :check_auth
+      before_filter :parse_request, :check_auth
 
 
       def check_auth
@@ -15,6 +15,10 @@ module Api
             sign_in :user, resource
           end
         end
+      end
+
+      def parse_request
+        @json = JSON.parse(request.body.read)
       end
     end
   end

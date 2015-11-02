@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Api V1 Blog Entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Blog</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Is visible</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @api_v1_blog_entries.each do |api_v1_blog_entry| %>
+      <tr>
+        <td><%= api_v1_blog_entry.blog %></td>
+        <td><%= api_v1_blog_entry.title %></td>
+        <td><%= api_v1_blog_entry.content %></td>
+        <td><%= api_v1_blog_entry.is_visible %></td>
+        <td><%= link_to 'Show', api_v1_blog_entry %></td>
+        <td><%= link_to 'Edit', edit_api_v1_blog_entry_path(api_v1_blog_entry) %></td>
+        <td><%= link_to 'Destroy', api_v1_blog_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Blog entry', new_api_v1_blog_entry_path %>
