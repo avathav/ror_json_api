@@ -31,4 +31,9 @@ class User < ActiveRecord::Base
   def to_s
     email
   end
+
+  def admin
+    role == User.roles[:admin]
+  end
+  alias_method :admin?, :admin
 end

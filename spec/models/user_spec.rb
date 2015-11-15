@@ -19,8 +19,23 @@
 #
 
 require 'rails_helper'
+require 'cancan/matchers'
 
 RSpec.describe User, type: :model do
   it { should have_many(:blogs) }
 
+  describe "abilities" do
+    subject(:ability){ Ability.new(user) }
+    let(:user){ nil }
+
+    context "when is an admin" do
+      xit{ should be_able_to(:manage, Blog.new) }
+    end
+    context "when is an guest" do
+      xit{ should be_able_to(:read, Blog.new) }
+    end
+    context "when is an user" do
+      xit{ should be_able_to(:create, Blog.new) }
+    end
+  end
 end
